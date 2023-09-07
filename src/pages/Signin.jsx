@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import useToast from "../hooks/useToast";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Signin = () => {
   const from = location.state?.from?.pathname || "/";
 
   const { signIn } = useContext(AuthContext);
-  // const { showToast } = useToast();
+  const { showToast } = useToast();
 
   const {
     register,
@@ -19,15 +20,15 @@ const Signin = () => {
   } = useForm();
 
   const onSubmit = (user) => {
-    const { email, password } = user;
-    signIn(email, password)
-      .then(() => {
+    signIn(user?.email, user?.password)
+      .then((signedInUser) => {
+        const displayName = signedInUser?.displayName || "User";
         navigate(from, { replace: true });
-        // showToast("Welcome back to car craze!");
+        showToast(`Welcome back ${displayName}!`);
         reset();
       })
       .catch((err) => {
-        // showToast(err.message);
+        showToast(err.message);
         console.error(err);
       });
   };
@@ -36,7 +37,7 @@ const Signin = () => {
     <section className="w-[90%] md:w-[50%] mx-auto">
       <div className="shadow-2xl p-10 flex items-center justify-center flex-col w-full min-h-screen">
         <h2 className="text-center text-4xl font-bold mb-10 text-white">
-          Login
+          Signin
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -65,10 +66,8 @@ const Signin = () => {
               </span>
             )}
           </div>
-          <button
-            type="submit"
-            className="bg-red-500 px-3 py-2 rounded w-full text-white"
-          >
+
+          <button type="submit" className="loginButton">
             Signin
           </button>
         </form>
