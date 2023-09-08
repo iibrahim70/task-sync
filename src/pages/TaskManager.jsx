@@ -40,7 +40,7 @@ const TaskManager = () => {
   }, [tasks]);
 
   return (
-    <section className="flex items-center justify-center flex-col lg:flex-row gap-x-10 min-h-screen w-full p-10 text-black">
+    <main className="flex items-center justify-center flex-col lg:flex-row gap-x-10 min-h-screen w-full p-10 text-black">
       <div className="w-full flex-1">
         <h2 className="text-center text-4xl font-bold mb-10">Create Task</h2>
 
@@ -149,7 +149,7 @@ const TaskManager = () => {
           </div>
         ))}
       </div>
-    </section>
+    </main>
   );
 };
 
