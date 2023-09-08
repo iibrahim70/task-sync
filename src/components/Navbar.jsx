@@ -16,7 +16,7 @@ const Navbar = () => {
       <Link to="/">Home</Link>
       <Link to="/create-task">Task Management</Link>
       <Link to="/create-team">Team Collaboration</Link>
-      <a>Contact</a>
+      <Link>Dashboard</Link>
       {user ? (
         <button onClick={handleLogout}>Signout</button>
       ) : (
