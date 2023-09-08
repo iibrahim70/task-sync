@@ -8,6 +8,8 @@ import TaskManager from "./pages/TaskManager.jsx";
 import Main from "./layout/Main.jsx";
 import Home from "./pages/Home.jsx";
 import "./index.css";
+import TeamCollaboration from "./pages/TeamCollaboration.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
       {
         path: "/create-task",
         element: <TaskManager />,
+      },
+      {
+        path: "/create-team",
+        element: (
+          <PrivateRoute>
+            <TeamCollaboration />
+          </PrivateRoute>
+        ),
       },
     ],
   },
