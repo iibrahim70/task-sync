@@ -13,3 +13,7 @@
 .loginButton {
   @apply bg-red-500 px-3 py-2 rounded w-full text-white active:scale-105 duration-500 ease-in-out;
 }
+
+.ghotstBtn a {
+  @apply btn btn-ghost w-full;
+}
