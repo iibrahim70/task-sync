@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import useToast from "../hooks/useToast";
 
 const TeamCollaboration = () => {
   const { user } = useContext(AuthContext);
+  const { showToast } = useToast();
 
   const [teams, setTeams] = useState(
     JSON.parse(localStorage.getItem("teams")) || []
@@ -12,7 +14,6 @@ const TeamCollaboration = () => {
   const { register, reset, handleSubmit } = useForm();
 
   const handleCreateTeam = (data) => {
-    console.log(data);
     const newTeam = {
       id: Date.now(),
       name: data.teamName,
@@ -21,6 +22,7 @@ const TeamCollaboration = () => {
 
     setTeams([...teams, newTeam]);
     localStorage.setItem("teams", JSON.stringify([...teams, newTeam]));
+    showToast("Team Create successful!");
 
     reset();
   };
@@ -35,7 +37,7 @@ const TeamCollaboration = () => {
       setTeams([...teams]);
       localStorage.setItem("teams", JSON.stringify(teams));
     }
-
+    showToast("Joined Team successful!");
     reset();
   };
 
