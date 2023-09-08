@@ -15,7 +15,7 @@ const Navbar = () => {
     <div className="flex flex-col items-center text-base font-semibold text-white/80 mt-5 ghotstBtn">
       <Link to="/">Home</Link>
       <Link to="/create-task">Task Management</Link>
-      <a>About</a>
+      <Link to="/create-team">Team Collaboration</Link>
       <a>Contact</a>
       {user ? (
         <button onClick={handleLogout}>Signout</button>
